@@ -23,15 +23,15 @@ app.post('/register', async (req, res) => {
           return res.status(400).json({error: "Username already taken"});
         }
 
-        users.push({email,password,name})
-        
+        users.push({ email, password, name });
+
         try {
-            await addDoc(collection(db, "users"), {
+          const docRef = await addDoc(collection(db, "users"), {
             email: email,
             name: name,
-            password: password
+            password: password,
           });
-          console.log("Document written with ID: ",DocumentReference.users.id);
+          console.log("Document written with ID: ", docRef.id);
         } catch (e) {
           console.error("Error adding document: ", e);
         }
