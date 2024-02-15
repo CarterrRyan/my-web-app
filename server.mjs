@@ -1,6 +1,6 @@
 import express from "express";
 import { db } from "./firebaseConfig.mjs";
-import { collection, addDoc, doc, getDoc, getDocs } from "@firebase/firestore"; 
+import { collection, addDoc, doc, getDoc, getDocs,DocumentReference } from "@firebase/firestore"; 
 import cors from 'cors';
 
 
@@ -18,7 +18,7 @@ app.get('/',(req,res)=>{
 let users=[];
 app.post('/register', async (req, res) => {
     try {
-        const { email, password, name } = req.body;
+        const { email, name, password } = req.body;
         if (users.some(email=> email == email)){
           return res.status(400).json({error: "Username already taken"});
         }
@@ -28,10 +28,10 @@ app.post('/register', async (req, res) => {
         try {
             await addDoc(collection(db, "users"), {
             email: email,
-            password: password,
-            name: name
+            name: name,
+            password: password
           });
-          console.log("Document written with ID: ", docRef.id);
+          console.log("Document written with ID: ",DocumentReference.users.id);
         } catch (e) {
           console.error("Error adding document: ", e);
         }
