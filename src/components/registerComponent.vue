@@ -42,7 +42,7 @@ export default {
           password: this.password
         });
         console.log(response.data);
-        this.$router.push('/mainMenu');
+        this.$router.push('/home');
       } catch(error) {
         console.log(error);
       }
