@@ -1,7 +1,8 @@
 <template>
   <div class="main">
    <h1 class="email"> Email:</h1>
-    <input class="email" v-model="email" placeholder="Email" type="Text">
+    <input class="email" v-model="email" placeholder="Email" type="Text" id="emailInput" @input="checkEmail">
+    <div id="emailStatus"></div>
     <h1 class="name"> Name:</h1>
     <input class="name" v-model="name" placeholder="Name" type="Text">
     <h1 class="password"> Password:</h1>
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+let validEmail=false;
 import axios from 'axios';
 import { auth } from '../../firebaseConfig.mjs';
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -25,17 +27,27 @@ export default {
     }
   },
   methods:{
-      async signUpWithGoogle(){
-        try{ 
-          const provider = new GoogleAuthProvider();
-          await signInWithPopup(auth,provider);
-          this.$router.push('/home');
-        }catch(error) {
+    checkEmail() {
+      if (this.email.includes('@')&&this.email.includes('.')) {
+        console.log('Valid email');
+        return validEmail=true;
+      } else {
+        console.log('Invalid email');
+        return validEmail=false;
+      }
+    },
+    async signUpWithGoogle(){
+      try{ 
+        const provider = new GoogleAuthProvider();
+        await signInWithPopup(auth,provider);
+        this.$router.push('/home');
+      }catch(error) {
         console.log(error);
       }
     },
     async register() {
-      try {
+      if(validEmail==true){
+        try {
         const response = await axios.post('http://localhost:3000/register', {
           email: this.email,
           name:this.name,
@@ -46,7 +58,10 @@ export default {
       } catch(error) {
         console.log(error);
       }
-    }
+      }else{
+        alert('Invalid email. Email must contain a @ and .')
+      }
+    },
   }
 }
 </script>
