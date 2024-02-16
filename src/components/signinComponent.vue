@@ -41,7 +41,7 @@ export default {
 
     async signIn(){
         try{
-          const x = await axios.post('http://localhost:3000/signIn', {
+          const x = await axios.post('https://node-js-server-f70732e0f0ad.herokuapp.com/signIn', {
             email: this.email,
             password: this.password,
           });

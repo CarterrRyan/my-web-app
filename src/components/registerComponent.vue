@@ -48,7 +48,7 @@ export default {
     async register() {
       if(validEmail==true){
         try {
-        const response = await axios.post('http://localhost:3000/register', {
+        const response = await axios.post('https://node-js-server-f70732e0f0ad.herokuapp.com/register', {
           email: this.email,
           name:this.name,
           password: this.password

@@ -31,7 +31,7 @@ export default{
             try{
                 console.log(2,this.operator);
                 
-                const response = await axios.post('http://localhost:3000/calculate',{
+                const response = await axios.post('https://node-js-server-f70732e0f0ad.herokuapp.com/calculate',{
                     num1:this.num1,
                     num2:this.num2,
                     operator:this.operator
