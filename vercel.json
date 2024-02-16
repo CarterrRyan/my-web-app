@@ -1,24 +1,33 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.html",
-      "use": "@vercel/node",
-      "config": { "distDir": "dist" }
-    },
-    {
-      "src": "api/server.mjs",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/server.mjs"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/src/$1"
-    }
-  ]
-}
+    "version": 2,
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "api/server.mjs",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/server.mjs"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/dist/$1",
+        "continue": true
+      },
+      {
+        "handle": "filesystem"
+      },
+      {
+        "src": "/.*",
+        "dest": "/dist/index.html"
+  
+  
+      }
+    ]
+  }
