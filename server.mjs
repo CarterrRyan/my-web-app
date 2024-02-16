@@ -1,5 +1,6 @@
+import { createHash } from 'crypto';
 import express from "express";
-import { db } from "../firebaseConfig.mjs";
+import { db } from "./firebaseConfig.mjs";
 import { collection, addDoc, doc, getDoc, getDocs,DocumentReference } from "@firebase/firestore"; 
 import cors from 'cors';
 
@@ -9,6 +10,11 @@ const port = 3000;
 app.use(cors());
 app.use(express.json());
 
+// Function to hash data with SHA-256
+function sha256(data) {
+  return createHash('sha256').update(data).digest('hex');
+}
+
 
 let users=[];
 app.post('/register', async (req, res) => {
@@ -17,15 +23,18 @@ app.post('/register', async (req, res) => {
         if (users.some(user => user.email === email)){
           return res.status(400).json({error: "Username already taken"});
         }
-        users.push({ email, password, name });
-
+        // encrypt using sha256
+        const hashPassword = createHash('sha256').update(password).digest('hex');
+        users.push({ email:email, name,password:hashPassword });
           try {
             const docRef = await addDoc(collection(db, "users"), {
+              
               email: email,
               name: name,
-              password: password,
+              password: hashPassword,//store the hashed password.
             });
-            //console.log("Document written with ID: ", docRef.id);
+            // console.log("Document written with ID: ", docRef.id);
+            // console.log(email, hashPassword, name)
             return res.status(200).json({Success:email});
           } catch (e) {
             console.error("Error adding document: ", e);
@@ -39,10 +48,11 @@ app.post('/signIn', async (req, res) => {
   let found = false;
   try {
     let {email, password} = req.body;
+    const hashPassword = createHash('sha256').update(password).digest('hex');
     const querySnapshot = await getDocs(collection(db, "users"));
     querySnapshot.forEach((doc) => {
       const userData = doc.data();
-      if(userData.email == email && userData.password == password) {
+      if(userData.email == email && userData.password == hashPassword) {
         found = true;
       }
     });
