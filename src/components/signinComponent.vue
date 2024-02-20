@@ -89,7 +89,7 @@ export default {
 }
 .signUpWithGoogle {
   transition: background-color .3s, box-shadow .3s;
-  padding: 12px 16px 12px 42px;
+  padding: 12px 17px 12px 42px;
   margin-left: 40%;
   top: 20px;
   border: none;
