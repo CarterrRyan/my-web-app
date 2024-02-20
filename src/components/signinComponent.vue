@@ -8,8 +8,8 @@
       <input class="password" v-model="password" placeholder="Password" type="Text">  
     </div>
     <button @click="signUpWithGoogle" class="signUpWithGoogle">Sign up with Google</button>
-    <button @click="signIn" class="signIn">Sign In</button>
-    <button @click="register" class="register">Register</button>
+    <button @click="signIn" class="password">Sign In</button>
+    <button @click="register" class="password">Register</button>
   </template>
 
 <script>
@@ -60,9 +60,38 @@ export default {
 
 <style scoped>
 /* Your CSS styles go here */
+.email{
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.password{
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .main {
+    height: auto;
+  }
+}
 .signUpWithGoogle {
   transition: background-color .3s, box-shadow .3s;
   padding: 12px 16px 12px 42px;
+  margin-left: 40%;
+  top: 20px;
   border: none;
   border-radius: 3px;
   box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
