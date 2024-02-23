@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <h1>Home</h1>
     <button @click="Calculator" class = calculator>Calculator</button>
@@ -7,6 +8,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'HomeComponent',
   methods:{
