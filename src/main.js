@@ -12,11 +12,36 @@ import clockComponent from './components/clockComponent'
 
 //define routes
 const routes=[
-    {path: '/register', component: registerComponent},
-    {path:'/signin', component:signinComponent},
-    {path:'/home',component: homeComponent},
-    {path:'/calculate',component:calculatorComponent},
-    {path:'/clock',component:clockComponent},
+    {path: '/register', 
+    component: registerComponent,
+        meta:{
+            hideSidebar:true
+        }
+    },
+    {path:'/signin',
+     component:signinComponent,
+        meta:{
+            hideSidebar:true
+        }
+    },
+    {path:'/home',
+    component: homeComponent,
+        meta:{
+            hideSidebar:false
+        }
+    },
+    {path:'/calculate',
+    component:calculatorComponent,
+        meta:{
+            hideSidebar:false
+        }
+    },
+    {path:'/clock',
+    component:clockComponent,
+        meta:{
+            hideSidebar:false
+        }
+    },
 ]
 
 //create router instance

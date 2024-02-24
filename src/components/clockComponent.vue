@@ -50,7 +50,7 @@ export default {
     width: 100%;
     min-height: 100vh;
     background:linear-gradient(45deg,#08001f,#30197d);
-    color:#fff;
+    color:#ffffff;
     position: relative;
 }
 .container{

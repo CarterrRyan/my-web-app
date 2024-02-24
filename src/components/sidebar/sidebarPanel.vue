@@ -1,18 +1,20 @@
 <script>
-import SidebarLink from './SidebarLink.vue';
+import SidebarLink from './SidebarLink.vue'
 import sidebarLink from './SidebarLink.vue'
 import { collapsed, toggleSidebar, sidebarWidth } from './state.js'
 export default {
-  props:{},
+  props:{
+    hideSidebar:Boolean
+  },
   components:{ sidebarLink, SidebarLink },
-  setup(){
-    return { collapsed, toggleSidebar, sidebarWidth }
+  setup(props){
+    return {...props, collapsed, toggleSidebar, sidebarWidth, }
   }
   
 }
 </script>
 <template>
-  <div class="sidebar" :style="{ width: sidebarWidth }">
+  <div class="sidebar" :style="{ width: sidebarWidth }" v-show="!hideSidebar">
     <h1>
       <span v-if="collapsed">
         <div>V</div>
@@ -40,6 +42,7 @@ export default {
     --sidebar-bg-color: #2f855a;
     --sidebar-item-hover: #38a169;
     --sidebar-item-active: #276749;
+
 }
 </style>
 <style scoped>
@@ -48,6 +51,7 @@ export default {
     background-color: var(--sidebar-bg-color);
     float: left;
     position: fixed;
+    font-family: cascadia code;
     z-index:1;
     top:0;
     left:0;

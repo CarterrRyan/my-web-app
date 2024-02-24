@@ -1,7 +1,7 @@
 <template>
 
   <div>
-    <h1>Home</h1>
+    <h1 class = "home">Home</h1>
     <button @click="Calculator" class = calculator>Calculator</button>
     <button @click = "clock" class = clock>Clock</button>
   </div>
@@ -23,5 +23,11 @@ export default {
 </script>
 
 <style scoped>
-/* Your CSS styles go here */
+.home{
+  text-align: center;
+  margin-left:0;
+}
+.clock{
+  text-align: center;
+}
 </style>
