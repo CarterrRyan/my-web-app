@@ -2,6 +2,8 @@
 import SidebarLink from './SidebarLink.vue'
 import sidebarLink from './SidebarLink.vue'
 import { collapsed, toggleSidebar, sidebarWidth } from './state.js'
+//import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+//import { byPrefixAndName } from '@awesome.me/kit-e6e8c8275f.js/icons'
 export default {
   props:{
     hideSidebar:Boolean
@@ -31,7 +33,7 @@ export default {
       :class="{ 'rotate-180': collapsed }"
       @click="toggleSidebar"
     >
-    <i class="fas fa-angle-double-left"></i>
+    <font-awesome-icon :icon="['fas', 'bars']" />
     </span>
   </div>
 </template>

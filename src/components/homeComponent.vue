@@ -2,8 +2,6 @@
 
   <div>
     <h1 class = "home">Home</h1>
-    <button @click="Calculator" class = calculator>Calculator</button>
-    <button @click = "clock" class = clock>Clock</button>
   </div>
 </template>
 
